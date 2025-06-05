@@ -1,0 +1,3 @@
+API Key Information:
+- Map Service: OpenStreetMap (Free Tier)
+- No API Key required for basic usage.
