@@ -17,5 +17,35 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tambah Cerita Baru",
+      "url": "/#/add-story",
+      "description": "Langsung ke halaman untuk menambahkan cerita baru",
+      "icons": [
+        {
+          "src": "/images/logo.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/desktop-screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Tampilan Beranda di Desktop"
+    },
+    {
+      "src": "/images/mobile-screenshot.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tampilan Beranda di Mobile"
+    }
   ]
 }
