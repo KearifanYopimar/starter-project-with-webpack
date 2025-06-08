@@ -1,1 +1,27 @@
-<!doctype html><html lang="id"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Story App</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/><script src="https://cdn.tailwindcss.com"></script><link rel="manifest" href="/manifest.json"><link rel="icon" href="favicon.png"><script defer="defer" src="bundle.js"></script></head><body class="bg-gray-50 text-gray-800 font-sans leading-relaxed"><a href="#main-content" class="skip-link sr-only focus:not-sr-only absolute top-2 left-2 bg-blue-600 text-white px-4 py-2 rounded shadow-md z-50">Lewati ke konten</a><header class="bg-white shadow sticky top-0 z-10"><nav class="container mx-auto flex items-center justify-between py-4 px-6"><a href="#/home" class="flex items-center space-x-2"><h1 class="text-xl font-bold text-gray-700">Story App</h1></a><ul class="flex space-x-6"><li><a href="#/home" class="text-gray-600 hover:text-blue-600 font-medium transition">Beranda</a></li><li><a href="#/about" class="text-gray-600 hover:text-blue-600 font-medium transition">Tentang</a></li><li><a href="#/add-story" class="text-gray-600 hover:text-blue-600 font-medium transition">Tambah Cerita</a></li><li><a href="#/login" class="text-gray-600 hover:text-blue-600 font-medium transition">Login</a></li></ul></nav></header><main id="main-content" role="main" class="container mx-auto py-10 px-6"><div id="app" class="bg-white rounded-xl shadow-lg p-6 min-h-[300px]"><p class="text-center text-gray-500">Memuat...</p></div></main><footer class="bg-white shadow mt-10 py-4 text-center text-gray-600"><p>© 2025 Story App</p></footer></body></html>
+<!doctype html><html lang="id"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Story App</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/><script src="https://cdn.tailwindcss.com"></script><link rel="manifest" href="/manifest.json"><link rel="icon" href="favicon.png"><script defer="defer" src="bundle.js"></script></head><body class="bg-gray-50 text-gray-800 font-sans leading-relaxed"><a href="#main-content" class="skip-link sr-only focus:not-sr-only absolute top-2 left-2 bg-blue-600 text-white px-4 py-2 rounded shadow-md z-50">Lewati ke konten</a><header class="bg-white shadow sticky top-0 z-10"><nav class="container mx-auto flex items-center justify-between py-4 px-6"><a href="#/home" class="flex items-center space-x-2"><h1 class="text-xl font-bold text-gray-700">Story App</h1></a><ul class="flex space-x-6" id="nav-links"><li><a href="#/home" class="text-gray-600 hover:text-blue-600 font-medium transition">Beranda</a></li><li><a href="#/about" class="text-gray-600 hover:text-blue-600 font-medium transition">Tentang</a></li><li><a href="#/add-story" class="text-gray-600 hover:text-blue-600 font-medium transition">Tambah Cerita</a></li><li id="auth-link"><a href="#/login" class="text-gray-600 hover:text-blue-600 font-medium transition">Login</a></li></ul></nav></header><main id="main-content" role="main" class="container mx-auto py-10 px-6"><div id="app" class="bg-white rounded-xl shadow-lg p-6 min-h-[300px]"><p class="text-center text-gray-500">Memuat...</p></div></main><footer class="bg-white shadow mt-10 py-4 text-center text-gray-600"><p>© 2025 Story App</p></footer><script>// Logika untuk memperbarui navigasi berdasarkan autentikasi
+  class AuthService {
+    static getToken() {
+      return localStorage.getItem('token');
+    }
+    static removeToken() {
+      localStorage.removeItem('token');
+    }
+  }
+
+  function updateNav() {
+    const authLink = document.getElementById('auth-link');
+    if (AuthService.getToken()) {
+      authLink.innerHTML = '<a href="#" id="logout-link" class="text-gray-600 hover:text-blue-600 font-medium transition">Logout</a>';
+      document.getElementById('logout-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        AuthService.removeToken();
+        window.location.hash = '#/login';
+        updateNav();
+      });
+    } else {
+      authLink.innerHTML = '<a href="#/login" class="text-gray-600 hover:text-blue-600 font-medium transition">Login</a>';
+    }
+  }
+
+  window.addEventListener('load', updateNav);
+  window.addEventListener('hashchange', updateNav);</script></body></html>
